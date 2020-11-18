@@ -49,6 +49,7 @@ options = {
 	images: null,			// Array of images path : ["images/image1.png", "images/image2.png"]
 	linewidth:2,			// Line width for rectangle and arrow shapes
 	fontsize:"20px",		// font size for text
+	lineheight:20,		// line height for text (in pixels)
 	bootstrap: true,		// Bootstrap theme design
 	position: "top",		// Position of toolbar (available only with bootstrap)
 	idAttribute: "id",		// Attribute to select image id.

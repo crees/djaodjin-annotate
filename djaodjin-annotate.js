@@ -163,7 +163,7 @@ MIT License
       }
       self.$textbox = $('<textarea id=""' +
         ' style="position:absolute;z-index:100000;display:none;top:0;left:0;' +
-        'background:transparent;border:1px dotted; line-height:25px;' +
+        'background:transparent;border:1px dotted; line-height:' + self.options.lineheight + 'px;' +
         ';font-size:' + self.fontsize +
         ';font-family:sans-serif;color:' + self.options.color +
         ';word-wrap: break-word;outline-width: 0;overflow: hidden;' +
@@ -493,7 +493,7 @@ MIT License
       context.font = self.fontsize + ' sans-serif';
       context.textBaseline = 'top';
       context.fillStyle = self.options.color;
-      self.wrapText(context, text, x + 3, y + 4, maxWidth, 25);
+      self.wrapText(context, text, x + 3, y + 4, maxWidth, self.options.lineheight);
     },
     pushText: function() {
       var self = this;
@@ -801,6 +801,7 @@ MIT License
     color: 'red',
     type: 'rectangle',
     linewidth: 2,
+    lineheight: '20',
     fontsize: '20px',
     bootstrap: false,
     position: 'top',
