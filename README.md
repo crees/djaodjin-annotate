@@ -7,6 +7,7 @@ a screenshot. Try the live demo on [DjaoDjin blog](https://djaodjin.com/blog/jqu
 # Usage
 
 Load djaodjin-annotate.css and djaodjin-annotate.js
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -14,10 +15,9 @@ Load djaodjin-annotate.css and djaodjin-annotate.js
 	<meta charset=utf-8 />
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="/static/css/annotate.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="/static/js/djaodjin-annotate.js"></script>
 </body>

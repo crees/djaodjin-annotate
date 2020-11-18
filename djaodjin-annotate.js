@@ -73,7 +73,7 @@ MIT License
 		        self.$tool += '<button id="undoaction" title="Undo the last annotation"' +
 		          ' class="btn btn-primary ' + classPosition2 +
 		          ' annotate-undo">' +
-		          ' <span class="glyphicon glyphicon-arrow-left"></span></button>';
+		          ' <span class="fa fa-undo"></span></button>';
 		        break;
     		case 'unselect':
 				self.$tool += '<label class="btn btn-danger active">' +
@@ -81,7 +81,7 @@ MIT License
 				  '" data-tool="null"' +
 				  ' data-toggle="tooltip" data-placement="top"' +
 				  ' title="No tool selected">' +
-				  '<span class="glyphicon glyphicon-ban-circle"></span>' +
+				  '<span class="fa fa-ban"></span>' +
 				  '</label>';
 				break;
     		case 'rectangle':
@@ -90,7 +90,7 @@ MIT License
 		          '" data-tool="rectangle"' +
 		          ' data-toggle="tooltip" data-placement="top"' +
 		          ' title="Draw an rectangle">' +
-		          ' <span class="glyphicon glyphicon-unchecked"></span>' +
+		          ' <span class="fa fa-square"></span>' +
 		          '</label>';
 		        break;
     		case 'circle':
@@ -99,7 +99,7 @@ MIT License
 		          '" data-tool="circle"' +
 		          ' data-toggle="tooltip"' +
 		          'data-placement="top" title="Draw a circle">' +
-		          ' <span class="glyphicon glyphicon-copyright-mark"></span>' +
+		          ' <span class="fa fa-circle"></span>' +
 		          '</label>';
 		        break;
     		case 'text':
@@ -108,27 +108,27 @@ MIT License
 		          '" data-tool="text"' +
 		          ' data-toggle="tooltip"' +
 		          'data-placement="top" title="Write some text">' +
-		          ' <span class="glyphicon glyphicon-font"></span></label>';
+		          ' <span class="fa fa-font"></span></label>';
 		        break;
     		case 'arrow':
 		          self.$tool += '<label class="btn btn-primary">' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="arrow"' +
 		          ' data-toggle="tooltip" data-placement="top" title="Draw an arrow">' +
-		          ' <span class="glyphicon glyphicon-arrow-up"></span></label>';
+		          ' <span class="fa fa-arrow-up"></span></label>';
 		          break;
     		case 'pen':
 		          self.$tool += '<label class="btn btn-primary">' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="pen"' +
 		          ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
-		          ' <span class="glyphicon glyphicon-pencil"></span></label>';
+		          ' <span class="fa fa-paint-brush"></span></label>';
 		          break;
     		case 'redo':
 		          self.$tool += '<button type="button" id="redoaction"' +
 		          ' title="Redo the last undone annotation"' +
 		          'class="btn btn-primary ' + classPosition2 + ' annotate-redo">' +
-		          ' <span class="glyphicon glyphicon-arrow-right"></span></button>';
+		          '<span class="fa fa-redo"></span></button>';
 		          break;
     		}
 	    }
