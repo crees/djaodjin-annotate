@@ -46,6 +46,7 @@ options = {
 	height: "400",			// Height of canvas
 	color:"red", 			// Color for shape and text
 	type : "rectangle",		// default shape: can be "rectangle", "arrow" or "text"
+	tools: ['undo', 'unselect', 'rectangle', 'circle', 'text', 'arrow', 'pen', 'redo'],
 	images: null,			// Array of images path : ["images/image1.png", "images/image2.png"]
 	linewidth:2,			// Line width for rectangle and arrow shapes
 	fontsize:"20px",		// font size for text

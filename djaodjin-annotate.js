@@ -65,72 +65,112 @@ MIT License
         classPosition2 = 'btn-block';
       }
       if (self.options.bootstrap) {
-        self.$tool = '<div id="" class="btn-group" role="group" >' +
-          '<div class="' + classPosition1 + '" data-toggle="buttons">' +
-          '<button id="undoaction" title="Undo the last annotation"' +
-          ' class="btn btn-primary ' + classPosition2 +
-          ' annotate-undo">' +
-          ' <span class="glyphicon glyphicon-arrow-left"></span></button>';
-        if (self.options.unselectTool) {
-          self.$tool += '<label class="btn btn-danger active">' +
-            '<input type="radio" name="' + self.toolOptionId +
-            '" data-tool="null"' +
-            ' data-toggle="tooltip" data-placement="top"' +
-            ' title="No tool selected">' +
-            '<span class="glyphicon glyphicon-ban-circle"></span>' +
-            '</label>';
-        }
-        self.$tool += '<label class="btn btn-primary active">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="rectangle"' +
-          ' data-toggle="tooltip" data-placement="top"' +
-          ' title="Draw an rectangle">' +
-          ' <span class="glyphicon glyphicon-unchecked"></span>' +
-          '</label><label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="circle"' +
-          ' data-toggle="tooltip"' +
-          'data-placement="top" title="Write some text">' +
-          ' <span class="glyphicon glyphicon-copyright-mark"></span>' +
-          '</label><label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="text"' +
-          ' data-toggle="tooltip"' +
-          'data-placement="top" title="Write some text">' +
-          ' <span class="glyphicon glyphicon-font"></span></label>' +
-          '<label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="arrow"' +
-          ' data-toggle="tooltip" data-placement="top" title="Draw an arrow">' +
-          ' <span class="glyphicon glyphicon-arrow-up"></span></label>' +
-          '<label class="btn btn-primary">' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="pen"' +
-          ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
-          ' <span class="glyphicon glyphicon-pencil"></span></label>' +
-          '<button type="button" id="redoaction"' +
-          ' title="Redo the last undone annotation"' +
-          'class="btn btn-primary ' + classPosition2 + ' annotate-redo">' +
-          ' <span class="glyphicon glyphicon-arrow-right"></span></button>' +
-          '</div></div>';
+    	self.$tool = '<div id="" class="btn-group" role="group" >' +
+        	'<div class="' + classPosition1 + '" data-toggle="buttons">';
+    	for (var i = 0; i < self.options.tools.length; i++) {
+    		switch (self.options.tools[i]) {
+    		case 'undo':
+		        self.$tool += '<button id="undoaction" title="Undo the last annotation"' +
+		          ' class="btn btn-primary ' + classPosition2 +
+		          ' annotate-undo">' +
+		          ' <span class="glyphicon glyphicon-arrow-left"></span></button>';
+		        break;
+    		case 'unselect':
+				self.$tool += '<label class="btn btn-danger active">' +
+				  '<input type="radio" name="' + self.toolOptionId +
+				  '" data-tool="null"' +
+				  ' data-toggle="tooltip" data-placement="top"' +
+				  ' title="No tool selected">' +
+				  '<span class="glyphicon glyphicon-ban-circle"></span>' +
+				  '</label>';
+				break;
+    		case 'rectangle':
+		        self.$tool += '<label class="btn btn-primary active">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="rectangle"' +
+		          ' data-toggle="tooltip" data-placement="top"' +
+		          ' title="Draw an rectangle">' +
+		          ' <span class="glyphicon glyphicon-unchecked"></span>' +
+		          '</label>';
+		        break;
+    		case 'circle':
+		        self.$tool += '<label class="btn btn-primary">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="circle"' +
+		          ' data-toggle="tooltip"' +
+		          'data-placement="top" title="Draw a circle">' +
+		          ' <span class="glyphicon glyphicon-copyright-mark"></span>' +
+		          '</label>';
+		        break;
+    		case 'text':
+		        self.$tool += '<label class="btn btn-primary">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="text"' +
+		          ' data-toggle="tooltip"' +
+		          'data-placement="top" title="Write some text">' +
+		          ' <span class="glyphicon glyphicon-font"></span></label>';
+		        break;
+    		case 'arrow':
+		          self.$tool += '<label class="btn btn-primary">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="arrow"' +
+		          ' data-toggle="tooltip" data-placement="top" title="Draw an arrow">' +
+		          ' <span class="glyphicon glyphicon-arrow-up"></span></label>';
+		          break;
+    		case 'pen':
+		          self.$tool += '<label class="btn btn-primary">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="pen"' +
+		          ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
+		          ' <span class="glyphicon glyphicon-pencil"></span></label>';
+		          break;
+    		case 'redo':
+		          self.$tool += '<button type="button" id="redoaction"' +
+		          ' title="Redo the last undone annotation"' +
+		          'class="btn btn-primary ' + classPosition2 + ' annotate-redo">' +
+		          ' <span class="glyphicon glyphicon-arrow-right"></span></button>';
+		          break;
+    		}
+	    }
+        self.$tool += '</div></div>';
       } else {
-        self.$tool = '<div id="" style="display:inline-block">' +
-          '<button id="undoaction">UNDO</button>';
-        if (self.options.unselectTool) {
-          self.$tool += '<input type="radio" name="' + self.toolOptionId +
-            '" data-tool="null">NO TOOL SELECTED';
-        }
-        self.$tool += '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="rectangle" checked>RECTANGLE' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="circle">CIRCLE<input type="radio" name="' +
-          self.toolOptionId + '" data-tool="text"> TEXT' +
-          '<input type="radio" name="' + self.toolOptionId +
-          '" data-tool="arrow">ARROW<input type="radio" name="' +
-          self.toolOptionId + '" data-tool="pen">PEN' +
-          '<button id="redoaction"' +
-          'title="Redo the last undone annotation">REDO</button>' +
-          '</div>';
+        self.$tool = '<div id="" style="display:inline-block">';
+      	for (var i = 0; i < self.options.tools.length; i++) {
+    		switch (self.options.tools[i]) {
+    		case 'undo':
+    			self.$tool += '<button id="undoaction">UNDO</button>';
+    			break;
+    		case 'unselect':
+    			self.$tool += '<input type="radio" name="' + self.toolOptionId +
+		            '" data-tool="null">NO TOOL SELECTED';
+    			break;
+    		case 'rectangle':
+		        self.$tool += '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="rectangle" checked>RECTANGLE';
+		        break;
+    		case 'circle':
+		        self.$tool += '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="circle">CIRCLE';
+		        break;
+    		case 'text':
+    			self.$tool += '<input type="radio" name="' +
+    				self.toolOptionId + '" data-tool="text"> TEXT';
+    			break;
+    		case 'arrow':
+				self.$tool += '<input type="radio" name="' + self.toolOptionId +
+					'" data-tool="arrow">ARROW';
+				break;
+    		case 'pen':
+				self.$tool += '<input type="radio" name="' + self.toolOptionId +
+					'" data-tool="pen">PEN';
+				break;
+    		case 'redo':
+    			self.$tool += '<button id="redoaction"' +
+    				'title="Redo the last undone annotation">REDO</button>';
+    			 break;
+    		}
+      	}
+        self.$tool += '</div>';
       }
       self.$tool = $(self.$tool);
       $('.annotate-container').append(self.$tool);
@@ -800,6 +840,7 @@ MIT License
     images: [],
     color: 'red',
     type: 'rectangle',
+    tools: ['undo', 'unselect', 'rectangle', 'circle', 'text', 'arrow', 'pen', 'redo'],
     linewidth: 2,
     lineheight: '20',
     fontsize: '20px',
@@ -807,7 +848,6 @@ MIT License
     position: 'top',
     idAttribute: 'id',
     selectEvent: 'change',
-    unselectTool: false,
     onExport: function(image) {
       console.log(image);
     }
