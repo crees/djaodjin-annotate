@@ -835,11 +835,10 @@ MIT License
         self.pushText();
       }
       var exportDefaults = {
-        type: 'image/jpeg',
-        quality: 0.75
+        imageExport: { type: 'image/jpeg', quality: 0.75, },
       };
-      options = $.extend({}, exportDefaults, options);
-      var image = self.baseCanvas.toDataURL(options.type, options.quality);
+      options = $.extend({}, exportDefaults, options.imageExport);
+      var image = self.baseCanvas.toDataURL(options.imageExport.type, options.imageExport.quality);
       if (callback) {
         callback(image);
       }
