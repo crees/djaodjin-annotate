@@ -594,6 +594,9 @@ MIT License
     annotatestart: function(event) {
       var self = this;
       self.clicked = true;
+      if (self.options.onAnnotate !== undefined) {
+    	  self.options.onAnnotate();
+      }
       var offset = self.$el.offset();
       if (self.$textbox.is(':visible')) {
         var text = self.$textbox.val();
@@ -897,6 +900,7 @@ MIT License
     selectEvent: 'change',
     onExport: function(image) {
       console.log(image);
-    }
+    },
+  	onAnnotate: undefined,
   };
 })(jQuery);
