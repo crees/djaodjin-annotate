@@ -93,13 +93,22 @@ MIT License
 		          ' <span class="fa fa-square"></span>' +
 		          '</label>';
 		        break;
+    		case 'rectangle-filled':
+		        self.$tool += '<label class="btn btn-primary active">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="rectangle-filled"' +
+		          ' data-toggle="tooltip" data-placement="top"' +
+		          ' title="Draw a filled rectangle (for erasing)">' +
+		          ' <span class="fas fa-square"></span>' +
+		          '</label>';
+		        break;
     		case 'circle':
 		        self.$tool += '<label class="btn btn-primary">' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="circle"' +
 		          ' data-toggle="tooltip"' +
 		          'data-placement="top" title="Draw a circle">' +
-		          ' <span class="fa fa-circle"></span>' +
+		          ' <span class="fa fa-circle-o"></span>' +
 		          '</label>';
 		        break;
     		case 'text':
@@ -147,6 +156,10 @@ MIT License
     		case 'rectangle':
 		        self.$tool += '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="rectangle" checked>RECTANGLE';
+		        break;
+    		case 'rectangle-filled':
+		        self.$tool += '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="rectangle-filled" checked>FILLED RECTANGLE';
 		        break;
     		case 'circle':
 		        self.$tool += '<input type="radio" name="' + self.toolOptionId +
@@ -399,11 +412,13 @@ MIT License
     redoaction: function(event) {
       event.preventDefault();
       var self = this;
-      self.storedElement.push(self.storedUndo[self.storedUndo.length - 1]);
-      self.storedUndo.pop();
-      self.checkUndoRedo();
-      self.clear();
-      self.redraw();
+      if (self.storedUndo.length > 0) {
+	      self.storedElement.push(self.storedUndo[self.storedUndo.length - 1]);
+	      self.storedUndo.pop();
+	      self.checkUndoRedo();
+	      self.clear();
+	      self.redraw();
+      }
     },
     redraw: function() {
       var self = this;
@@ -422,6 +437,10 @@ MIT License
         switch (element.type) {
           case 'rectangle':
             self.drawRectangle(self.baseContext, element.fromx, element.fromy,
+              element.tox, element.toy);
+            break;
+          case 'rectangle-filled':
+            self.drawRectangleFilled(self.baseContext, element.fromx, element.fromy,
               element.tox, element.toy);
             break;
           case 'arrow':
@@ -463,6 +482,16 @@ MIT License
       context.lineWidth = self.linewidth;
       context.strokeStyle = self.options.color;
       context.stroke();
+    },
+    drawRectangleFilled: function(context, x, y, w, h) {
+        var self = this;
+        context.beginPath();
+        context.rect(x, y, w, h);
+        context.fillStyle = '#FFFFFF';
+        context.fill();
+        context.lineWidth = self.linewidth;
+        context.strokeStyle = '#FFFFFF';
+        context.stroke();
     },
     drawCircle: function(context, x1, y1, x2, y2) {
       var radiusX = (x2 - x1) * 0.5;
@@ -626,6 +655,15 @@ MIT License
               toy: self.toy
             });
             break;
+          case 'rectangle-filled':
+            self.storedElement.push({
+              type: 'rectangle-filled',
+              fromx: self.fromx,
+              fromy: self.fromy,
+              tox: self.tox,
+              toy: self.toy
+            });
+            break;
           case 'circle':
             self.storedElement.push({
               type: 'circle',
@@ -709,6 +747,15 @@ MIT License
           self.toy = (pageY - offset.top) * self.compensationWidthRate -
             self.fromy;
           self.drawRectangle(self.drawingContext, self.fromx, self.fromy,
+            self.tox, self.toy);
+          break;
+        case 'rectangle-filled':
+          self.clear();
+          self.tox = (pageX - offset.left) * self.compensationWidthRate -
+            self.fromx;
+          self.toy = (pageY - offset.top) * self.compensationWidthRate -
+            self.fromy;
+          self.drawRectangleFilled(self.drawingContext, self.fromx, self.fromy,
             self.tox, self.toy);
           break;
         case 'arrow':
