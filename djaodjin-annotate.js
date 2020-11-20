@@ -842,7 +842,6 @@ MIT License
       if (callback) {
         callback(image);
       }
-      self.options.onExport(image);
     }
   };
   $.fn.annotate = function(options, cmdOption, callback) {
