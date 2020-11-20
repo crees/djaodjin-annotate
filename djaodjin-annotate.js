@@ -139,6 +139,20 @@ MIT License
 		          'class="btn btn-primary ' + classPosition2 + ' annotate-redo">' +
 		          '<span class="fa fa-redo"></span></button>';
 		          break;
+    		case 'tick':
+		          self.$tool += '<label class="btn btn-primary">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="tick"' +
+		          ' data-toggle="tooltip" data-placement="top" title="Tick Tool">' +
+		          ' <span class="fa fa-check"></span></label>';
+		          break;
+    		case 'cross':
+		          self.$tool += '<label class="btn btn-primary">' +
+		          '<input type="radio" name="' + self.toolOptionId +
+		          '" data-tool="cross"' +
+		          ' data-toggle="tooltip" data-placement="top" title="X Tool">' +
+		          ' <span class="fas fa-times"></span></label>';
+		          break;
     		}
 	    }
         self.$tool += '</div></div>';
@@ -464,6 +478,10 @@ MIT License
             self.drawCircle(self.baseContext, element.fromx, element.fromy,
               element.tox, element.toy);
             break;
+          case 'cross':
+          case 'tick':
+        	self.drawStamp(self.baseContext, element.type, element.fromx, element.fromy);
+        	break;
           default:
         }
       }
@@ -513,6 +531,24 @@ MIT License
       context.strokeStyle = self.options.color;
       context.closePath();
       context.stroke();
+    },
+    drawStamp: function(context, type, x, y) {
+        switch (type) {
+        case 'tick':
+        	var char = String.fromCharCode(parseInt('2713', 16));
+        	break;
+        case 'cross':
+        	var char = String.fromCharCode(parseInt('D7', 16));
+        	break;
+        default:
+        	var char = "????";
+        	break;
+        }
+    	context.font = this.fontsize + ' sans-serif';
+        context.textBaseline = 'top';
+        context.fillStyle = self.options.color;
+        var offset = parseInt(this.fontsize.replace(/\D+/g, ''))/2;
+    	context.fillText(char, x - offset, y - offset);
     },
     drawArrow: function(context, x, y, w, h) {
       var self = this;
@@ -595,7 +631,7 @@ MIT License
       var self = this;
       self.clicked = true;
       if (self.options.onAnnotate !== undefined) {
-    	  self.options.onAnnotate();
+    	  self.options.onAnnotate(self.options.type);
       }
       var offset = self.$el.offset();
       if (self.$textbox.is(':visible')) {
@@ -629,19 +665,30 @@ MIT License
       self.fromy = (pageY - offset.top) * self.compensationWidthRate;
       self.fromxText = pageX;
       self.fromyText = pageY;
-      if (self.options.type === 'text') {
+      
+      switch (self.options.type) {
+      case 'text':
         self.$textbox.css({
           left: self.fromxText + 2,
           top: self.fromyText,
           width: 0,
           height: 0
         }).show();
-      }
-      if (self.options.type === 'pen') {
+        break;
+      case 'pen':
         self.points.push([
           self.fromx,
           self.fromy
         ]);
+        break;
+      case 'tick':
+      case 'cross':
+    	 self.storedElement.push({
+    		 type: self.options.type,
+    		 fromx: self.fromx,
+    		 fromy: self.fromy
+    	 });
+    	 break;
       }
     },
     annotatestop: function() {
@@ -723,6 +770,8 @@ MIT License
           width: 100,
           height: 50
         });
+      } else {
+    	  self.redraw();
       }
     },
     annotateleave: function(event) {
@@ -800,6 +849,11 @@ MIT License
             self
             .tox, self.toy);
           break;
+        case 'cross':
+        case 'tick':
+        	self.clear();
+        	self.drawStamp(self.drawingContext, self.options.type, self.fromx, self.fromy);
+        	break;
         default:
       }
     },
