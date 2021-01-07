@@ -205,9 +205,9 @@ MIT License
       if (self.options.position === 'top' || self.options.position !==
         'top' && !self.options.bootstrap) {
         self.$tool.css({
-          position: 'absolute',
+          position: 'relative',
           top: -35,
-          left: canvasPosition.left
+          left: 0,
         });
       } else if (self.options.position === 'left' && self.options.bootstrap) {
         self.$tool.css({
@@ -218,8 +218,8 @@ MIT License
       } else if (self.options.position === 'right' && self.options.bootstrap) {
         self.$tool.css({
           position: 'absolute',
-          top: canvasPosition.top - 35,
-          left: canvasPosition.left + self.baseCanvas.width + 20
+          top: 35 + "px",
+          right: -50 + "px"
         });
       } else if (self.options.position === 'bottom' && self.options.bootstrap) {
         self.$tool.css({
