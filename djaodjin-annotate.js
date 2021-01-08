@@ -584,13 +584,14 @@ MIT License
           var testWidth = metrics.width;
           if (testWidth > maxWidth && n > 0) {
             drawingContext.fillText(line, x, y);
-            line = words[n] + ' ';
             y += lineHeight;
+            line = words[n] + ' ';
           } else {
             line = testLine;
           }
         }
-        drawingContext.fillText(line, x, y + i * lineHeight);
+        drawingContext.fillText(line, x, y);
+        y += lineHeight;
       }
     },
     drawText: function(context, text, x, y, maxWidth) {
