@@ -264,8 +264,15 @@ MIT License
             .idAttribute));
           self.setBackgroundImage(image);
         });
-      $('#' + self.drawingLayerId).on('mousedown touchstart', function(
+      $('#' + self.drawingLayerId).on('mousedown', function(
         event) {
+      	if (self.usesTouch === undefined) {
+        	self.annotatestart(event);
+    	}
+      });
+      $('#' + self.drawingLayerId).on('touchstart', function(
+        event) {
+      	self.usesTouch = true;
         self.annotatestart(event);
       });
       $('#' + self.drawingLayerId).on('mouseup touchend', function(event) {
