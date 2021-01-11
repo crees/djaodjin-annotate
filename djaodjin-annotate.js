@@ -234,7 +234,7 @@ MIT License
         ';font-size:' + self.fontsize +
         ';font-family:sans-serif;color:' + self.options.color +
         ';word-wrap: break-word;outline-width: 0;overflow: hidden;' +
-        'padding:0px"></textarea>');
+        'padding:0px;resize: both;"></textarea>');
       $('body').append(self.$textbox);
       if (self.options.images) {
         self.initBackgroundImages();
@@ -618,7 +618,7 @@ MIT License
           text: text,
           fromx: self.fromx,
           fromy: self.fromy,
-          maxwidth: self.tox
+          maxwidth: parseInt(self.$textbox[0].style.width.replace(/\D/g,'')) - 12,
         });
         if (self.storedUndo.length > 0) {
           self.storedUndo = [];
@@ -654,7 +654,7 @@ MIT License
             text: text,
             fromx: (self.fromxText - offset.left) * self.compensationWidthRate,
             fromy: (self.fromyText - offset.top) * self.compensationWidthRate,
-            maxwidth: self.tox
+            maxwidth: parseInt(self.$textbox[0].style.width.replace(/\D/g,'')) - 12,
           });
           if (self.storedUndo.length > 0) {
             self.storedUndo = [];
