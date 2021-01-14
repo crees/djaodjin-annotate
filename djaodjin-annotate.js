@@ -59,14 +59,16 @@ MIT License
       self.drawingContext.lineJoin = 'round';
       var classPosition1 = 'btn-group';
       var classPosition2 = '';
+      var style = '';
       if (self.options.position === 'left' || self.options.position ===
         'right') {
         classPosition1 = 'btn-group-vertical';
         classPosition2 = 'btn-block';
+        style = ' style="margin-bottom: 0;"' ;
       }
       if (self.options.bootstrap) {
     	self.$tool = '<div id="" class="btn-group" role="group" >' +
-        	'<div class="' + classPosition1 + '" data-toggle="buttons">';
+        	'<div class="' + classPosition1 + '"' + style + ' data-toggle="buttons">';
     	for (var i = 0; i < self.options.tools.length; i++) {
     		switch (self.options.tools[i]) {
     		case 'undo':
@@ -76,7 +78,7 @@ MIT License
 		          ' <span class="fa fa-undo"></span></button>';
 		        break;
     		case 'unselect':
-				self.$tool += '<label class="btn btn-danger active">' +
+				self.$tool += '<label class="btn btn-danger active"' + style + '>' +
 				  '<input type="radio" name="' + self.toolOptionId +
 				  '" data-tool="null"' +
 				  ' data-toggle="tooltip" data-placement="top"' +
@@ -85,7 +87,7 @@ MIT License
 				  '</label>';
 				break;
     		case 'rectangle':
-		        self.$tool += '<label class="btn btn-primary active">' +
+		        self.$tool += '<label class="btn btn-primary active"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="rectangle"' +
 		          ' data-toggle="tooltip" data-placement="top"' +
@@ -94,7 +96,7 @@ MIT License
 		          '</label>';
 		        break;
     		case 'rectangle-filled':
-		        self.$tool += '<label class="btn btn-primary active">' +
+		        self.$tool += '<label class="btn btn-primary active"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="rectangle-filled"' +
 		          ' data-toggle="tooltip" data-placement="top"' +
@@ -103,7 +105,7 @@ MIT License
 		          '</label>';
 		        break;
     		case 'circle':
-		        self.$tool += '<label class="btn btn-primary">' +
+		        self.$tool += '<label class="btn btn-primary"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="circle"' +
 		          ' data-toggle="tooltip"' +
@@ -112,7 +114,7 @@ MIT License
 		          '</label>';
 		        break;
     		case 'text':
-		        self.$tool += '<label class="btn btn-primary">' +
+		        self.$tool += '<label class="btn btn-primary"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="text"' +
 		          ' data-toggle="tooltip"' +
@@ -120,14 +122,14 @@ MIT License
 		          ' <span class="fa fa-font"></span></label>';
 		        break;
     		case 'arrow':
-		          self.$tool += '<label class="btn btn-primary">' +
+		          self.$tool += '<label class="btn btn-primary"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="arrow"' +
-		          ' data-toggle="tooltip" data-placement="top" title="Draw an arrow">' +
+		          ' data-toggle="tooltip" data-placement="top" title="Draw an arrow"' + style + '>' +
 		          ' <span class="fa fa-arrow-up"></span></label>';
 		          break;
     		case 'pen':
-		          self.$tool += '<label class="btn btn-primary">' +
+		          self.$tool += '<label class="btn btn-primary"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="pen"' +
 		          ' data-toggle="tooltip" data-placement="top" title="Pen Tool">' +
@@ -140,14 +142,14 @@ MIT License
 		          '<span class="fa fa-redo"></span></button>';
 		          break;
     		case 'tick':
-		          self.$tool += '<label class="btn btn-primary">' +
+		          self.$tool += '<label class="btn btn-primary"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="tick"' +
 		          ' data-toggle="tooltip" data-placement="top" title="Tick Tool">' +
 		          ' <span class="fa fa-check"></span></label>';
 		          break;
     		case 'cross':
-		          self.$tool += '<label class="btn btn-primary">' +
+		          self.$tool += '<label class="btn btn-primary"' + style + '>' +
 		          '<input type="radio" name="' + self.toolOptionId +
 		          '" data-tool="cross"' +
 		          ' data-toggle="tooltip" data-placement="top" title="X Tool">' +
