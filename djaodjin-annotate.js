@@ -772,10 +772,10 @@ MIT License
         self.checkUndoRedo();
         self.redraw();
       } else if (self.options.type === 'text') {
-        self.$textbox.css({
+    	self.$textbox.css({
           left: self.fromxText + 2,
           top: self.fromyText,
-          width: 100,
+          width: Math.trunc(self.currentWidth * 0.8),
           height: 50
         });
       } else {
