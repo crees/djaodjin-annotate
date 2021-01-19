@@ -46,7 +46,7 @@ options = {
 	height: "400",			// Height of canvas
 	color:"red", 			// Color for shape and text
 	type : "rectangle",		// default shape: can be "rectangle", "arrow" or "text"
-	tools: ['undo', 'unselect', 'rectangle', 'rectangle-filled', 'circle', 'text', 'arrow', 'pen', 'redo'],
+	tools: ['undo', 'unselect', 'rectangle', 'rectangle-filled', 'circle', 'text', 'arrow', 'pen', 'tick', 'cross', 'stamp_YES', 'redo'],	// Stamps can be any text or even Unicode, stamp_\u2227 makes a big caret for example
 	images: null,			// Array of images path : ["images/image1.png", "images/image2.png"]
 	linewidth:2,			// Line width for rectangle and arrow shapes
 	fontsize:"20px",		// font size for text

@@ -155,6 +155,15 @@ MIT License
 		          ' data-toggle="tooltip" data-placement="top" title="X Tool">' +
 		          ' <span class="fas fa-times"></span></label>';
 		          break;
+    		default:
+    			  if (String(self.options.tools[i]).startsWith('stamp_')) {
+    				  self.$tool += '<label class="btn btn-primary"' + style + '>' +
+    		          '<input type="radio" name="' + self.toolOptionId +
+    		          '" data-tool="' + self.options.tools[i] + '"' +
+    		          ' data-toggle="tooltip" data-placement="top" title="' + self.options.tools[i] + ' Tool">' +
+    		          String(self.options.tools[i]).substr(6) + '</label>';
+    			  }
+    			  break;
     		}
 	    }
         self.$tool += '</div></div>';
@@ -489,9 +498,13 @@ MIT License
             break;
           case 'cross':
           case 'tick':
-        	self.drawStamp(self.baseContext, element.type, element.fromx, element.fromy);
-        	break;
+          	self.drawStamp(self.baseContext, element.type, element.fromx, element.fromy);
+           	break;
           default:
+          	if (String(element.type).startsWith('stamp_')) {
+          		self.drawStamp(self.baseContext, String(element.type).substr(6), element.fromx, element.fromy);
+               	break;
+          	}
         }
       }
     },
@@ -550,7 +563,7 @@ MIT License
         	var char = String.fromCharCode(parseInt('D7', 16));
         	break;
         default:
-        	var char = "????";
+        	var char = type;
         	break;
         }
     	context.font = this.fontsize + ' sans-serif';
@@ -699,6 +712,15 @@ MIT License
     		 fromy: self.fromy
     	 });
     	 break;
+      default:
+    	 if (String(self.options.type).startsWith('stamp_')) {
+    		  self.storedElement.push({
+    	    		 type: self.options.type,
+    	    		 fromx: self.fromx,
+    	    		 fromy: self.fromy
+    	    	 });
+    	 }
+      	 break;
       }
     },
     annotatestop: function() {
@@ -865,6 +887,10 @@ MIT License
         	self.drawStamp(self.drawingContext, self.options.type, self.fromx, self.fromy);
         	break;
         default:
+        	if (String(self.options.type).startsWith('stamp_')) {
+        		self.clear();
+        		self.drawStamp(self.drawingContext, String(self.options.type).substr(6), self.fromx, self.fromy)
+        	}
       }
     },
     annotateresize: function() {
