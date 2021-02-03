@@ -53,6 +53,9 @@ options = {
 	lineheight:20,		// line height for text (in pixels)
 	bootstrap: true,		// Bootstrap theme design
 	position: "top",		// Position of toolbar (available only with bootstrap)
+	// You can put the toolbar into a different element with these two, for example
+	// <div class="toolbar-container"></div> will hold the toolbar with these:
+	//position: "top-inside", toolbarContainer: ".toolbar-container",
 	idAttribute: "id",		// Attribute to select image id.
 	selectEvent: "change",	// listened event to select image
 	unselectTool: false		// display an unselect tool for mobile

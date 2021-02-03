@@ -211,33 +211,52 @@ MIT License
         self.$tool += '</div>';
       }
       self.$tool = $(self.$tool);
-      $('.annotate-container').append(self.$tool);
+      if (!self.options.toolbarContainer) {
+    	  self.options.toolbarContainer = '.annotate-container';
+      }
+      $(self.options.toolbarContainer).append(self.$tool);
       var canvasPosition = self.$el.offset();
-      if (self.options.position === 'top' || self.options.position !==
-        'top' && !self.options.bootstrap) {
+      if (!self.options.bootstrap) {
+    	  self.options.position = 'top';
+      }
+      switch (self.options.position) {
+      default:
+      case 'top':
         self.$tool.css({
           position: 'relative',
           top: -35,
           left: 0,
         });
-      } else if (self.options.position === 'left' && self.options.bootstrap) {
+        break;
+      case 'top-inside':
+    	// This means the bar will be 'sunk' into the top of the image.
+    	// Use this when you've redefined toolbarContainer to put it elsewhere.
+    	self.$tool.css({
+    	  position: 'relative',
+    	  top: 0,
+    	});
+    	break;
+      case 'left':
         self.$tool.css({
           position: 'absolute',
           top: canvasPosition.top - 35,
           left: canvasPosition.left - 20
         });
-      } else if (self.options.position === 'right' && self.options.bootstrap) {
+        break;
+      case 'right':
         self.$tool.css({
           position: 'absolute',
           top: 35 + "px",
           right: -72 + "px"
         });
-      } else if (self.options.position === 'bottom' && self.options.bootstrap) {
+        break;
+      case 'bottom':
         self.$tool.css({
           position: 'absolute',
           top: canvasPosition.top + self.baseCanvas.height + 35,
           left: canvasPosition.left
         });
+        break;
       }
       self.$textbox = $('<textarea id=""' +
         ' style="position:absolute;z-index:100000;display:none;top:0;left:0;' +
