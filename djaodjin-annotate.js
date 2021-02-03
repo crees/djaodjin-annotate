@@ -230,7 +230,7 @@ MIT License
         self.$tool.css({
           position: 'absolute',
           top: 35 + "px",
-          right: -50 + "px"
+          right: -72 + "px"
         });
       } else if (self.options.position === 'bottom' && self.options.bootstrap) {
         self.$tool.css({
@@ -570,7 +570,7 @@ MIT License
         context.textBaseline = 'top';
         context.fillStyle = self.options.color;
         var offset = parseInt(this.fontsize.replace(/\D+/g, ''))/2;
-    	context.fillText(char, x - offset, y - offset);
+    	context.fillText(char, x - offset/1.41, y - offset);
     },
     drawArrow: function(context, x, y, w, h) {
       var self = this;
