@@ -61,7 +61,7 @@ MIT License
       var classPosition2 = '';
       var style = '';
       if (self.options.position === 'left' || self.options.position ===
-        'right') {
+        'right' || self.options.position === 'vertical') {
         classPosition1 = 'btn-group-vertical';
         classPosition2 = 'btn-block';
         style = ' style="margin-bottom: 0;"' ;
@@ -228,7 +228,7 @@ MIT License
           left: 0,
         });
         break;
-      case 'top-inside':
+      case 'top-inside': case 'vertical':
     	// This means the bar will be 'sunk' into the top of the image.
     	// Use this when you've redefined toolbarContainer to put it elsewhere.
     	self.$tool.css({
