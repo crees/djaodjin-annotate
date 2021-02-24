@@ -64,7 +64,7 @@ MIT License
         'right' || self.options.position === 'vertical') {
         classPosition1 = 'btn-group-vertical';
         classPosition2 = 'btn-block';
-        style = ' style="margin-bottom: 0;"' ;
+        style = ' style="margin-bottom: 0; white-space: nowrap;"' ;
       }
       if (self.options.bootstrap) {
     	self.$tool = '<div id="" class="btn-group" role="group" >' +
