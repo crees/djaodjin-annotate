@@ -944,7 +944,7 @@ MIT License
         self.pushText();
       }
       var exportDefaults = {
-        imageExport: { type: 'image/jpeg', quality: 0.75, },
+        imageExport: { type: 'image/jpeg', quality: 0.8, },
       };
       options = $.extend({}, exportDefaults, options.imageExport);
       var image = self.baseCanvas.toDataURL(options.imageExport.type, options.imageExport.quality);
